@@ -7,7 +7,7 @@ export default function PlannerScreen({navigation}: any) {
     return (
         <View>
             <Text>I am panel screen</Text>
-            <Button title='Goto Home' onPress={() => navigation.push("Home")} />
+            <Button title='Goto Home' onPress={() => navigation.navigate("Home")} />
         </View>
     );
 }
