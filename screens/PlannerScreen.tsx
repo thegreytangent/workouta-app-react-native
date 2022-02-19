@@ -6,6 +6,7 @@ export default function PlannerScreen({navigation}: NativeStackHeaderProps) {
     
     useEffect( () => {
         console.log("Initializing PlannerScreen ");
+        return () => console.log("Unmounting PlannerScreen")
     },[])
     return (
         <View>

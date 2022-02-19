@@ -6,11 +6,12 @@ import { NativeStackHeaderProps } from "@react-navigation/native-stack";
 export default function HomeScreen({navigation} : NativeStackHeaderProps ) {
     useEffect( () => {
         console.log("Initializing HomeScreen ");
-    })
+        return () => console.log("Unmounting Home Screen")
+    },[])
     return (
         <View>
             <Text>I am home screen</Text>
-          <Button title='Goto Planner' onPress={() => navigation.navigate("Planner")} />
+          <Button title='Goto Test' onPress={() => navigation.navigate("Test")} />
         </View>
     );
 }
