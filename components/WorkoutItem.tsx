@@ -11,7 +11,7 @@ export default function WorkoutItem({ item }: { item: Workout }) {
             <Text style={styles.difficulty}>Difficulty: {item.difficulty}</Text>
             
         </View>
-    );
+    ); 
 } 
 
 

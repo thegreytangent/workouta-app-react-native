@@ -7,6 +7,7 @@ import TestScreen from '../screens/TestScreen';
 import {Text} from 'react-native'
 import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import WorkoutDetailScreen from '../screens/WorkoutDetailScreen';
 
 export default function Navigation() {
     return (
@@ -20,10 +21,16 @@ const Stack = createNativeStackNavigator();
 function RootNavigator() {
     return (
         <Stack.Navigator>
-            <Stack.Screen component={BottomTabNavigator} 
+            <Stack.Screen 
+            component={BottomTabNavigator} 
             name="Root" 
-            options={{headerShown: false}} />
-            <Stack.Screen component={TestScreen} name="Test" />
+            options={{headerShown: false}} 
+            />
+          <Stack.Screen 
+            component={WorkoutDetailScreen} 
+            name="WorkoutDetail"
+            options={{ title: "" }}
+          />
         </Stack.Navigator>
     );
 
