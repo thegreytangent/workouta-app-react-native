@@ -1,10 +1,8 @@
 import { StyleSheet, Text } from "react-native";
 
-export function TacFont({children} : {children: any}) {
+export function TacFont(props: Text['props']) {
     return (
-        <Text  style={styles.font}>
-            {children}
-        </Text>
+        <Text {...props} style={[props.style,styles.font]} />
     )
 }
 
