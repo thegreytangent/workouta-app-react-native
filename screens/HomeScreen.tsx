@@ -5,6 +5,7 @@ import { FlatList, StyleSheet, View, Text} from 'react-native';
 import WorkoutItem from '../components/WorkoutItem';
 import data from '../data.json';
 import { Workout } from '../types/data';
+import { TacFont } from '../components/styled/tacFont';
 
 export default function HomeScreen({navigation} : NativeStackHeaderProps ) {
     useEffect( () => {
@@ -22,7 +23,10 @@ export default function HomeScreen({navigation} : NativeStackHeaderProps ) {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>New Workout</Text>
+            <TacFont>
+            <Text>New Workout</Text>
+            </TacFont>
+         
              <FlatList 
               data={data as Array<Workout>} 
               keyExtractor={item => item.slug} //for unique key
@@ -40,6 +44,7 @@ const styles = StyleSheet.create({
     header: {
         fontSize: 20,
         marginBottom: 20,
-        fontWeight: "bold"
+        fontWeight: "bold",
+       
     }
 });

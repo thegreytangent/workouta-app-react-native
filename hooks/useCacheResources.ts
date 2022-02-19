@@ -10,9 +10,12 @@ export default function useCacheResources() {
         console.log("useEffect executed");
        async function loadResourcesAndDataAsync() {
             try {
+            console.log("Load fonts");
             await Font.loadAsync({
-                   "shizuru" : require("../assets/fonts/Shizuru-Regular.ttf") 
+                   "shizuru" : require("../assets/fonts/Shizuru-Regular.ttf"),
+                   "tacFont" : require("../assets/fonts/SyneTactile-Regular.ttf") 
                 })
+                console.log("Font loaded");
             } catch (e) {
                 console.warn(e);
             } finally {
