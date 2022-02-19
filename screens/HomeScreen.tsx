@@ -1,8 +1,10 @@
+import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 import { useEffect } from 'react';
-import {View, Text, Button, StyleSheet, FlatList} from 'react-native';
-import { NativeStackHeaderProps } from "@react-navigation/native-stack";
-import data from "../data.json";
-import { Workout, Difficulty } from '../types/data';
+import { FlatList, StyleSheet, View, Text} from 'react-native';
+
+import WorkoutItem from '../components/WorkoutItem';
+import data from '../data.json';
+import { Workout } from '../types/data';
 
 export default function HomeScreen({navigation} : NativeStackHeaderProps ) {
     useEffect( () => {
@@ -17,21 +19,14 @@ export default function HomeScreen({navigation} : NativeStackHeaderProps ) {
         difficulty: "easy",
         sequence: []
     }
-    const renderItem = ({item}: {item: Workout}) => {
-        return (
-            <View>
-             
-            <Text>{item.name}</Text>
-            <Text>{item.difficulty}</Text>
-        </View>
-        );
-    }
+
     return (
         <View style={styles.container}>
+            <Text style={styles.header}>New Workout</Text>
              <FlatList 
               data={data as Array<Workout>} 
               keyExtractor={item => item.slug} //for unique key
-              renderItem={renderItem}
+              renderItem={WorkoutItem}
              />
         </View>
     );
@@ -39,6 +34,12 @@ export default function HomeScreen({navigation} : NativeStackHeaderProps ) {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 20
+        padding: 20,
+        flex: 1
+    },
+    header: {
+        fontSize: 20,
+        marginBottom: 20,
+        fontWeight: "bold"
     }
 });
