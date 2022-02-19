@@ -1,10 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View } from 'react-native';
-import HomeScreen from './screens/HomeScreen';
-import PlannerScreen from './screens/PlannerScreen';
-import Navigation from './navigation/index';
+
+import Navigation from './navigation';
+import useCacheResources from './hooks/useCacheResources';
 
 export default function App() {
+  const isLoaded = useCacheResources();
+  console.log("--- ", isLoaded);
   return (
     <>
     <Navigation /> 
