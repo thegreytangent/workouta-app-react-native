@@ -1,39 +1,26 @@
 import { NativeStackHeaderProps } from '@react-navigation/native-stack';
-import { useEffect, useState } from 'react';
 import { FlatList, StyleSheet, View, Text, Pressable } from 'react-native';
-
 import WorkoutItem from '../components/WorkoutItem';
-import data from '../data.json';
-import { Workout } from '../types/data';
 import { TacFont } from '../components/styled/tacFont';
-import { getWorkOut } from '../storage/workout';
+import { useWorkOuts } from '../hooks/useWorkOut';
+
 
 export default function HomeScreen({ navigation }: NativeStackHeaderProps) {
-    const [workouts, setWorkout] = useState<Workout[]>([]);
-
-    useEffect(() => {
-         const getData = async () => {
-            const _getWorkout = await getWorkOut();
-            setWorkout(_getWorkout);
-        }
-        getData();
-    }, [])
-
-
+    const workouts = useWorkOuts();
     return (
         <View style={styles.container}>
             <TacFont>
                 <Text>New Workout</Text>
             </TacFont>
-             <FlatList
+            <FlatList
                 data={workouts}
                 keyExtractor={item => item.slug} //for unique key
                 renderItem={({ item }) => {
                     return (
-                        <Pressable onPress={ () => 
-                         navigation.navigate("WorkoutDetail", {
-                             slug: item.slug
-                         })
+                        <Pressable onPress={() =>
+                            navigation.navigate("WorkoutDetail", {
+                                slug: item.slug
+                            })
                         }>
                             <WorkoutItem item={item} />
                         </Pressable>

@@ -1,7 +1,7 @@
 import * as Font from 'expo-font';
 import { useEffect, useState } from 'react';
 
-import { getWorkOut, initWorkout } from '../storage/workout';
+import { getWorkOuts, initWorkout } from '../storage/workout';
 
 
 export default function useCacheResources() {
@@ -15,13 +15,13 @@ export default function useCacheResources() {
                 await initWorkout();
                 await Font.loadAsync({
                     "shizuru": require("../assets/fonts/Shizuru-Regular.ttf"),
-                    "tacFont": require("../assets/fonts/SyneTactile-Regular.ttf")
+                    // "tacFont": require("../assets/fonts/SyneTactile-Regular.ttf")
                 })
                 console.log("Font loaded");
             } catch (e) {
                 console.warn(e);
             } finally {
-                await getWorkOut();
+                await getWorkOuts();
                 setIsLoadingComplete(true)
             }
         }

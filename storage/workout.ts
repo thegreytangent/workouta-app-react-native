@@ -3,7 +3,7 @@ import data from "../data.json";
 import { Workout } from "../types/data";
 
 
-export const getWorkOut = async (): Promise<Workout[]> => {
+export const getWorkOuts = async (): Promise<Workout[]> => {
     return await getData("workout-data");
 }
 
@@ -20,4 +20,9 @@ export const initWorkout = async (): Promise<Boolean> => {
 
 export const clearData = async () => {
     await removeItem("workout-data")
+}
+
+export const getWorkoutBySlug = async (slug: string):Promise<Workout> => {
+    const workouts = await getWorkOuts();
+    return workouts.filter(r => r.slug == slug)[0];
 }

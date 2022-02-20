@@ -1,8 +1,10 @@
 import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 import { useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { TacFont } from '../components/styled/tacFont';
+import { useWorkOutBySlug } from '../hooks/useWorkOutBySlug';
+import { PressableText } from '../components/PressableText';
 
 type DetailedParam = {
     route: {
@@ -12,15 +14,21 @@ type DetailedParam = {
     }
 };
 
+export default function WorkoutDetailScreen({ route }: NativeStackHeaderProps & DetailedParam) {
 
+    const workout = useWorkOutBySlug(route.params.slug);
 
-export default function WorkoutDetailScreen({route }: NativeStackHeaderProps & DetailedParam) {
+    if (!workout) {
+        return null;
+    }
+
     return (
         <View style={styles.container}>
             <TacFont>
-                <Text>Slug - ${route.params.slug}</Text>
+                <Text>{workout.name}</Text>
             </TacFont>
-            </View>
+            <PressableText onPress={()=>{alert("Text click")}} text="Testing"  />
+        </View>
     );
 }
 

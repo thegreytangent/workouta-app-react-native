@@ -32,7 +32,7 @@ export const removeItem = async (key: string) => {
      try {
         await AsyncStorage.removeItem(key);
     } catch (err:any) {
-        console.error(e.message);
+        console.error(err.message);
     }
 
 }
