@@ -1,25 +1,24 @@
 import { NativeStackHeaderProps } from '@react-navigation/native-stack';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FlatList, StyleSheet, View, Text, Pressable } from 'react-native';
 
 import WorkoutItem from '../components/WorkoutItem';
 import data from '../data.json';
 import { Workout } from '../types/data';
 import { TacFont } from '../components/styled/tacFont';
+import { getWorkOut } from '../storage/workout';
 
 export default function HomeScreen({ navigation }: NativeStackHeaderProps) {
+    const [workouts, setWorkout] = useState<Workout[]>([]);
+
     useEffect(() => {
-        console.log("Initializing HomeScreen ");
-        return () => console.log("Unmounting Home Screen")
+         const getData = async () => {
+            const _getWorkout = await getWorkOut();
+            setWorkout(_getWorkout);
+        }
+        getData();
     }, [])
 
-    const workout: Workout = {
-        slug: "test",
-        name: "test",
-        duration: 123, 
-        difficulty: "easy",
-        sequence: []
-    }
 
     return (
         <View style={styles.container}>
@@ -27,7 +26,7 @@ export default function HomeScreen({ navigation }: NativeStackHeaderProps) {
                 <Text>New Workout</Text>
             </TacFont>
              <FlatList
-                data={data as Array<Workout>}
+                data={workouts}
                 keyExtractor={item => item.slug} //for unique key
                 renderItem={({ item }) => {
                     return (
